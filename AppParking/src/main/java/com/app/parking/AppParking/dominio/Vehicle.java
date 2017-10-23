@@ -1,4 +1,4 @@
-package com.app.parking.dominio;
+package com.app.parking.AppParking.dominio;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
