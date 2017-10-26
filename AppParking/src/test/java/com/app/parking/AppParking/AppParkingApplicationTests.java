@@ -3,14 +3,14 @@ package com.app.parking.AppParking;
 
 import com.app.parking.AppParking.controller.VehicleController;
 import com.app.parking.AppParking.dominio.Vehicle;
-import static com.app.parking.AppParking.dominio.VehicleBuilder.anVehicle;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 import org.junit.Test;
-//HOLA
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -18,12 +18,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class AppParkingApplicationTests {
 
 	VehicleController vehicleController=new VehicleController();
-	Vehicle vehicle=anVehicle().build();
-
+	
+	@MockBean
+	Vehicle vehicle;
+	
 	@Test
 	public void getValidVehicleTest(){
 		//Arrange
 		boolean resp=false;
+		when(vehicle.getTipo()).thenReturn("Carro");
 		//Act
 		resp=vehicleController.getValidVehicle(vehicle.getTipo());
 		//Assert
@@ -34,7 +37,7 @@ public class AppParkingApplicationTests {
 	public void getValidVehicleTestFailed(){
 		//Arrange
 		boolean resp=false;
-		vehicle=anVehicle().withTipo("Camión").build();
+		when(vehicle.getTipo()).thenReturn("Camión");
 		//Act
 		resp=vehicleController.getValidVehicle(vehicle.getTipo());
 		//Assert
@@ -45,6 +48,7 @@ public class AppParkingApplicationTests {
 	public void getPlacaTest(){
 		//Arrange
 		boolean resp=false;
+		when(vehicle.getPlaca()).thenReturn("NAG-547");
 		//Act
 		resp=vehicleController.getPlaca(vehicle.getPlaca());
 		//Assert
@@ -55,7 +59,7 @@ public class AppParkingApplicationTests {
 	public void getPlacaTestFailed(){
 		//Arrange
 		boolean resp=false;
-		vehicle=anVehicle().withPlaca("AQW-596").build();
+		when(vehicle.getPlaca()).thenReturn("AAG-547");
 		//Act
 		resp=vehicleController.getPlaca(vehicle.getPlaca());
 		//Assert
