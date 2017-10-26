@@ -11,19 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.parking.AppParking.dominio.Vehicle;
-import com.app.parking.AppParking.repository.VehicleRepository;
+import com.app.parking.AppParking.service.VehicleService;
 
 @RestController
 @RequestMapping("/vehicle")
 public class VehicleController {
 	
-	private VehicleRepository vehicleRepository;
+	private VehicleService vehicleService;
 	
-	public VehicleController(){
-	}
 
-	public VehicleController(VehicleRepository vehicleRepository) {
-		this.vehicleRepository = vehicleRepository;
+	public VehicleController(VehicleService vehicleService) {
+		this.vehicleService = vehicleService;
 	}
 	
 	@PostMapping
@@ -43,19 +41,13 @@ public class VehicleController {
 	
 	@GetMapping("/all")
 	public List<Vehicle> getAllVehicle(){
-		return this.vehicleRepository.findAll();
-	}
-	
-	public int getCountVehicles(Vehicle vehicle){
-		List<Vehicle> vehicles=null;
-		vehicles=this.vehicleRepository.findByTipo(vehicle.getTipo());
-		return vehicles.size();
+		return this.vehicleService.serviceGetAllVehicle();
 	}
 	
 	public String setMessage(Vehicle vehicle){
 		String message="";
 		if(getPlaca(vehicle.getPlaca())){
-			Vehicle vehicleResult=this.vehicleRepository.insert(vehicle);
+			Vehicle vehicleResult=this.vehicleService.serviceInsertVehicle(vehicle);
 			if(vehicleResult==vehicle){
 				message="Un vehículo ha ingresado";
 			}else{
@@ -90,7 +82,7 @@ public class VehicleController {
 	}
 	
 	public String validateSpace(Vehicle vehicle){
-		int countVehicles=getCountVehicles(vehicle);
+		int countVehicles=this.vehicleService.serviceGetCountVehicles(vehicle.getTipo());
 		String message="";
 		if((vehicle.getTipo().equals("Carro")) && (countVehicles>=20)){
 			message="El cupo para carros está lleno.";
