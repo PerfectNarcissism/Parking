@@ -12,17 +12,19 @@ public class Vehicle {
 	private String modelo;
 	private String color;
 	private String placa;
+	private String tipo;
 	
-	public Vehicle() {
-	}
 
-	public Vehicle(String marca, String modelo, String color, String placa) {
+	public Vehicle(String marca, String modelo, String color, String placa, String tipo) {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.color = color;
 		this.placa = placa;
+		this.tipo = tipo;
 	}
 
+	
+	
 	public String getMarca() {
 		return marca;
 	}
@@ -53,6 +55,14 @@ public class Vehicle {
 
 	public void setPlaca(String placa) {
 		this.placa = placa;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 	

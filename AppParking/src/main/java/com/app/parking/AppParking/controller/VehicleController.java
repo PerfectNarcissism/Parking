@@ -33,7 +33,7 @@ public class VehicleController {
 			if(getValidVehicle(vehicle.getTipo())){
 				message=validateSpace(vehicle);
 			}else{
-				message="Tipo de veh√≠culo no v√°lido.";
+				message="Tipo de vehÌculo no v·lido.";
 			}
 		} catch (Exception e) {
 			message="Ha ocurrido un error: "+ e.toString();
@@ -57,12 +57,12 @@ public class VehicleController {
 		if(getPlaca(vehicle.getPlaca())){
 			Vehicle vehicleResult=this.vehicleRepository.insert(vehicle);
 			if(vehicleResult==vehicle){
-				message="Un veh√≠culo ha ingresado";
+				message="Un vehÌculo ha ingresado";
 			}else{
-				message="El veh√≠culo no pudo ser ingresado";
+				message="El vehÌculo no pudo ser ingresado";
 			}
 		}else{
-			message="El vehiculo no puede ingresar hoy. El vehiculo no se encuentra en un d√≠a h√°bil.";
+			message="El vehiculo no puede ingresar hoy. El vehiculo no se encuentra en un dÌa h·bil.";
 		}
 		return message;
 	}
@@ -93,9 +93,9 @@ public class VehicleController {
 		int countVehicles=getCountVehicles(vehicle);
 		String message="";
 		if((vehicle.getTipo().equals("Carro")) && (countVehicles>=20)){
-			message="El cupo para carros est√° lleno.";
+			message="El cupo para carros est· lleno.";
 		}else if((vehicle.getTipo().equals("Moto")) && (countVehicles>=10)){
-			message="El cupo para motos est√° lleno.";
+			message="El cupo para motos est· lleno.";
 		}else{
 			message=setMessage(vehicle);
 		}

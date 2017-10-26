@@ -34,7 +34,7 @@ public class AppParkingApplicationTests {
 	public void getValidVehicleTestFailed(){
 		//Arrange
 		boolean resp=false;
-		vehicle=anVehicle().withTipo("CamiÃ³n").build();
+		vehicle=anVehicle().withTipo("Camión").build();
 		//Act
 		resp=vehicleController.getValidVehicle(vehicle.getTipo());
 		//Assert
