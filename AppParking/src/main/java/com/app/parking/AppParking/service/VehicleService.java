@@ -35,4 +35,8 @@ public class VehicleService {
 	public Vehicle serviceFindByPlaca(String placa){
 		return this.vehicleRepository.findByPlaca(placa);
 	}
+	
+	public List<Vehicle> serviceGetAllVehicleWithFields(){
+		return this.vehicleRepository.findAllWithFields();
+	}
 }

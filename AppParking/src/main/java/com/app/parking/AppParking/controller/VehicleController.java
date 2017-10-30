@@ -51,6 +51,11 @@ public class VehicleController {
 		return this.vehicleService.serviceGetAllVehicle();
 	}
 	
+	@GetMapping("/allVehicles")
+	public List<Vehicle> getAllWithFields(){
+		return this.vehicleService.serviceGetAllVehicleWithFields();
+	}
+	
 	public String setMessage(Vehicle vehicle){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date today=new Date();

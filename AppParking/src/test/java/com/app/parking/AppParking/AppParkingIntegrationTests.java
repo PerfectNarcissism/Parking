@@ -40,5 +40,10 @@ public class AppParkingIntegrationTests {
 		Vehicle vehicle= anVehicle().build();
 		assertNotEquals("Ha ocurrido un error.", vehicleController.deleteVehicle(vehicle.getPlaca()));
 	}
+	
+	@Test
+	public void getAllVehicleWithFieldsTest(){
+		assertNotNull(vehicleController.getAllWithFields());
+	}
 
 }
