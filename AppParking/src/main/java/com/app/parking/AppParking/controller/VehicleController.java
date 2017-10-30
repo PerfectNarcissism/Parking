@@ -25,7 +25,8 @@ import com.app.parking.AppParking.service.VehicleService;
 public class VehicleController {
 	
 	private VehicleService vehicleService;
-	
+	private static final String CARRO = "Carro";
+	private static final String MOTO = "Moto";
 
 	public VehicleController(VehicleService vehicleService) {
 		this.vehicleService = vehicleService;
@@ -90,7 +91,7 @@ public class VehicleController {
 	
 	public boolean getValidVehicle(String tipo){
 		boolean result=false;
-		if(tipo.equals("Carro") || tipo.equals("Moto")){
+		if(tipo.equals(CARRO) || tipo.equals(MOTO)){
 			result= true;
 		}
 		return result;
@@ -99,9 +100,9 @@ public class VehicleController {
 	public String validateSpace(Vehicle vehicle){
 		int countVehicles=this.vehicleService.serviceGetCountVehicles(vehicle.getTipo());
 		String message="";
-		if((vehicle.getTipo().equals("Carro")) && (countVehicles>=20)){
+		if((vehicle.getTipo().equals(CARRO)) && (countVehicles>=20)){
 			message="El cupo para carros está lleno.";
-		}else if((vehicle.getTipo().equals("Moto")) && (countVehicles>=10)){
+		}else if((vehicle.getTipo().equals(MOTO)) && (countVehicles>=10)){
 			message="El cupo para motos está lleno.";
 		}else{
 			message=setMessage(vehicle);
@@ -141,9 +142,9 @@ public class VehicleController {
 		int hours = toIntExact(totalHours);
 		hours=(hours==0)?1:hours;
 		int total=0;
-		if(vehicle.getTipo().equals("Carro")){
+		if(vehicle.getTipo().equals(CARRO)){
 			total=priceCar(hours);
-		}else if(vehicle.getTipo().equals("Moto")){			
+		}else if(vehicle.getTipo().equals(MOTO)){			
 			total=priceBike(hours, vehicle.getCilindraje());
 		}
 		return total;
