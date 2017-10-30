@@ -8,7 +8,6 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -90,6 +89,7 @@ public class AppParkingApplicationTests {
 		assertEquals("El cupo para carros está lleno.", message);
 	}
 	
+	@Test
 	public void validateSpaceTestBike(){
 		//Arrange
 		String message="";
@@ -98,6 +98,17 @@ public class AppParkingApplicationTests {
 		message=vehicleController.validateSpace(vehicle);
 		//Assert
 		assertEquals("El cupo para motos está lleno.", message);
+	}
+	
+	@Test
+	public void insertVehicleVoid(){
+		//Arrange
+		String message="";
+		when(vehicleController.insertVehicle(vehicle)).thenReturn("Un vehículo ha ingresado");
+		//Act
+		message=vehicleController.insertVehicle(vehicle);
+		//Assert
+		assertEquals("Un vehículo ha ingresado", message);
 	}
 	
 }

@@ -12,7 +12,7 @@ public class VehicleService {
 	
 	private VehicleRepository vehicleRepository;
 	
-	public VehicleService(VehicleRepository vehicleRepository) throws Exception {
+	public VehicleService(VehicleRepository vehicleRepository){
 		this.vehicleRepository = vehicleRepository;
 	}
 
@@ -28,4 +28,11 @@ public class VehicleService {
 		return this.vehicleRepository.findByTipo(tipo).size();
 	}
 	
+	public List<Vehicle> serviceDeleteVehicle(String placa){
+		return this.vehicleRepository.deleteByPlaca(placa);
+	}
+	
+	public Vehicle serviceFindByPlaca(String placa){
+		return this.vehicleRepository.findByPlaca(placa);
+	}
 }

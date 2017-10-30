@@ -13,17 +13,20 @@ public class Vehicle {
 	private String color;
 	private String placa;
 	private String tipo;
+	private String fecha;
+	private int cilindraje;
 	
-
-	public Vehicle(String marca, String modelo, String color, String placa, String tipo) {
+	public Vehicle(){}
+	
+	public Vehicle(String marca, String modelo, String color, String placa, String tipo, String fecha, int cilindraje) {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.color = color;
 		this.placa = placa;
 		this.tipo = tipo;
+		this.fecha = fecha;
+		this.cilindraje=cilindraje;
 	}
-
-	
 	
 	public String getMarca() {
 		return marca;
@@ -63,6 +66,22 @@ public class Vehicle {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public int getCilindraje() {
+		return cilindraje;
+	}
+
+	public void setCilindraje(int cilindraje) {
+		this.cilindraje = cilindraje;
 	}
 	
 	

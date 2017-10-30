@@ -7,6 +7,8 @@ public class VehicleBuilder {
 	private String color;
 	private String placa;
 	private String tipo;
+	private String fecha;
+	private int cilindraje;
 	
 	public VehicleBuilder(){
         this.marca = "Hello";
@@ -14,7 +16,8 @@ public class VehicleBuilder {
         this.color = "Negro";
         this.placa = "JFY-244";
         this.tipo = "Carro";
-        
+        this.fecha = "2017-10-30 01:23:29";
+        this.cilindraje=250;
     }
 	
 	public VehicleBuilder withMarca(String marca){
@@ -42,8 +45,18 @@ public class VehicleBuilder {
 		return this;
 	}
 	
+	public VehicleBuilder withFecha(String fecha){
+		this.fecha=fecha;
+		return this;
+	}
+	
+	public VehicleBuilder withCilindraje(int cilindraje){
+		this.cilindraje=cilindraje;
+		return this;
+	}
+	
 	public Vehicle build(){
-		return new Vehicle(marca, modelo, color, placa, tipo);
+		return new Vehicle(marca, modelo, color, placa, tipo, fecha, cilindraje);
 	}
 
 	public static VehicleBuilder anVehicle(){
