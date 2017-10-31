@@ -162,7 +162,7 @@ public class VehicleController {
 		}else{
 			int dayValue=8000;
 			if(hours>24){
-				int totalDays=Math.abs(hours/12);
+				int totalDays=Math.abs(hours/24);
 				total=(dayValue+(hours*1000))*totalDays;
 			}else{
 				total=dayValue;
@@ -178,6 +178,7 @@ public class VehicleController {
 		}else{
 			int dayValue=600;
 			int totalDays=Math.abs(hours/12);
+			totalDays=totalDays==0?1:totalDays;
 			total=totalDays*dayValue;
 		}
 		

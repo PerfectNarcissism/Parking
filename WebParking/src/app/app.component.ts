@@ -33,18 +33,20 @@ export class AppComponent {
   }
 
   registrarVehiculo(){
-    this.appService.registrarVehiculo(this.newVehiculo).then(
-      res=>{
-        this.mensajeRegistro=res;
-        this.mensajeRegistro=this.mensajeRegistro._body;
-        this.validarMensajeRegistro()
-        this.consultarCampoVehiculos();
-        Observable.interval(5000)
-        .subscribe(i => { 
-          this.mostrarAlertaRegistro=false;
-        });
-      }
-    );
+    if(this.validarCampos("Registro")){
+      this.appService.registrarVehiculo(this.newVehiculo).then(
+        res=>{
+          this.mensajeRegistro=res;
+          this.mensajeRegistro=this.mensajeRegistro._body;
+          this.validarMensajeRegistro()
+          this.consultarCampoVehiculos();
+          Observable.interval(5000)
+          .subscribe(i => { 
+            this.mostrarAlertaRegistro=false;
+          });
+        }
+      );
+    }
   }
 
   consultarCampoVehiculos(){
@@ -57,18 +59,20 @@ export class AppComponent {
   }
 
   retirarVehiculo(){
-    this.appService.retirarVehiculo(this.placaEliminar).then(
-      res=>{
-        this.mensajeRetiro=res;
-        this.mensajeRetiro=this.mensajeRetiro._body;
-        this.validarMensajeRetiro();
-        this.consultarCampoVehiculos();
-        Observable.interval(2000)
-        .subscribe(i => { 
-          this.mostrarAlertaRetiro=false;
-        });
-      }
-    );
+    if(this.validarCampos("Retiro")){
+      this.appService.retirarVehiculo(this.placaEliminar).then(
+        res=>{
+          this.mensajeRetiro=res;
+          this.mensajeRetiro=this.mensajeRetiro._body;
+          this.validarMensajeRetiro();
+          this.consultarCampoVehiculos();
+          Observable.interval(2000)
+          .subscribe(i => { 
+            this.mostrarAlertaRetiro=false;
+          });
+        }
+      );
+    }
   }
 
   validarMensajeRegistro(){
@@ -97,6 +101,31 @@ export class AppComponent {
       this.claseAlertRetiro="alert-info";
     }
     this.mostrarAlertaRetiro=true;
+  }
+
+  validarCampos(opcion:string){
+    if(opcion=="Registro"){
+      if(this.newVehiculo.color==undefined || this.newVehiculo.placa==undefined || this.newVehiculo.modelo==undefined || this.newVehiculo.marca==undefined)
+      {
+        alert("INGRESE TODOS LOS CAMPOS POR FAVOR");
+        return false;
+      }else if(this.newVehiculo.tipo=="Moto"){
+        if(this.newVehiculo.cilindraje==undefined){
+          alert("INGRESE EL CILINDRAJE");
+          return false;
+        }
+      }else{
+        return true;
+      }
+      
+    }else if(opcion=="Retiro"){
+      if(this.placaEliminar==""){
+        alert("INGRESE LA PLACA A ELIMINAR");
+        return false;
+      }else{
+        return true;
+      }
+    }
   }
 
 }

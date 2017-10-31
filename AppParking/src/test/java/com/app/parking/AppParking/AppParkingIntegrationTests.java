@@ -45,5 +45,25 @@ public class AppParkingIntegrationTests {
 	public void getAllVehicleWithFieldsTest(){
 		assertNotNull(vehicleController.getAllWithFields());
 	}
+	
+	@Test
+	public void priceCarMoreADayTest(){
+		assertEquals(vehicleController.priceCar(25), 33000);
+	}
+	
+	@Test
+	public void priceCarLessADayTest(){
+		assertEquals(vehicleController.priceCar(20), 8000);
+	}
+	
+	@Test
+	public void priceBikeHourTest(){
+		assertEquals(vehicleController.priceBike(5, 100), 2500);
+	}
+	
+	@Test
+	public void priceBikeMoreADayTest(){
+		assertEquals(vehicleController.priceBike(10, 550), 2600);
+	}
 
 }
