@@ -1,20 +1,88 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    Welcome to {{title}}!
+    Bienvenido a {{title}}
+    <br>
+    <small>Sistema para el control de vehículos</small>
   </h1>
-  <img width="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://blog.angular.io//">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="row">
+  <div class="panel panel-success">
+      <div class="panel-heading text-center"><strong>REGISTRO DE VEHÍCULOS</strong></div>
+    <div class="panel-body">
+      <div class="col-sm-4">
+        <label for="marca">Marca</label>
+        <input type="text" [(ngModel)]="newVehiculo.marca" class="form-control" id="marca" placeholder="Ingrese la marca del vehículo">
+      </div>
+      <div class="col-sm-3">
+        <label for="modelo">Modelo</label>
+        <input type="text" class="form-control" [(ngModel)]="newVehiculo.modelo" id="modelo" placeholder="Ingrese el modelo del vehículo">
+      </div>
+      <div class="col-sm-4">
+        <label for="color">Color</label>
+        <input type="text" class="form-control" [(ngModel)]="newVehiculo.color" id="color" placeholder="Ingrese el color del vehículo">
+      </div>
+      <div class="col-sm-4">
+        <label for="placa">Placa</label>
+        <input type="text" class="form-control" [(ngModel)]="newVehiculo.placa" id="placa" placeholder="Ingrese la placa de vehículo">
+      </div>
+      <div class="col-sm-3">
+        <label for="tipo">Tipo</label>
+        <select [(ngModel)]="newVehiculo.tipo" class="form-control" name="tipo" id="tipo">
+          <option [ngValue]="Carro" value="Carro">Carro</option>
+          <option [ngValue]="Moto" value="Moto">Moto</option>
+        </select>
+      </div>
+      <div *ngIf="newVehiculo.tipo=='Moto'" class="col-sm-4">
+        <label for="exampleInputEmail2">Cilindraje</label>
+        <input [(ngModel)]="newVehiculo.cilindraje" type="text" class="form-control" id="exampleInputEmail2" placeholder="Ingrese el cilindraje de la moto">
+      </div>
+      <div class="col-md-12 text-center">
+        <div *ngIf="mostrarAlertaRegistro" class="alert alert-success {{claseAlertRegistro}}" role="alert">¡{{mensajeRegistro}}!</div>
+        <button (click)="registrarVehiculo();" class="btn btn-success">
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+          <strong>REGISTRAR</strong>
+        </button>
+      </div>
+    </div>
+  </div>
 
+  <div class="col-md-7">
+    <div class="panel panel-info">
+      <!-- Default panel contents -->
+      <div class="panel-heading text-center"><strong>VEHÍCULOS INGRESADOS</strong></div>
+      <table id="tabla-vehiculos" class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Placa</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Fecha ingreso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vehiculo of listaVehiculos; let i = index" (click)="placaEliminar=vehiculo.placa">
+            <th scope="row">{{i+1}}</th>
+            <td>{{vehiculo.placa}}</td>
+            <td>{{vehiculo.tipo}}</td>
+            <td>{{vehiculo.fecha}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-md-4 panel panel-danger">
+    <div class="panel-heading text-center"><strong>RETIRO DE VEHÍCULOS</strong></div>
+    <div class="panel-body">
+      <label style="display:inline-block" for="placaEliminar">Placa</label>
+      <input style="display:inline-block; width: 210px;" type="text" class="form-control" [(ngModel)]="placaEliminar" id="placaEliminar"
+        placeholder="Ingrese la placa de vehículo">
+      <button class="btn btn-danger" (click)="retirarVehiculo()">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      </button>
+      <div *ngIf='mostrarAlertaRetiro' class="alert {{claseAlertRetiro}}" role="alert">¡{{mensajeRetiro}}!</div>
+    </div>
+  </div>
+
+</div>

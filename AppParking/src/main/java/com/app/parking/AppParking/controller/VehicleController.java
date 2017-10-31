@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import static java.lang.Math.toIntExact;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ public class VehicleController {
 	}
 	
 	@PostMapping
+	@CrossOrigin(origins="http://localhost:4200")
 	public String insertVehicle(@RequestBody Vehicle vehicle){
 		String message="";
 		try {
@@ -48,11 +50,13 @@ public class VehicleController {
 	}
 	
 	@GetMapping("/all")
+	@CrossOrigin(origins="http://localhost:4200")
 	public List<Vehicle> getAllVehicle(){
 		return this.vehicleService.serviceGetAllVehicle();
 	}
 	
 	@GetMapping("/allVehicles")
+	@CrossOrigin(origins="http://localhost:4200")
 	public List<Vehicle> getAllWithFields(){
 		return this.vehicleService.serviceGetAllVehicleWithFields();
 	}
@@ -111,6 +115,7 @@ public class VehicleController {
 	}
 	
 	@DeleteMapping("/delete/{placa}")
+	@CrossOrigin(origins="http://localhost:4200")
 	public String deleteVehicle(@PathVariable String placa){
 		String message="";
 		int total=0;
